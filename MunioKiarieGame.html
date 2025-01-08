@@ -31,7 +31,6 @@
 	let message = "TAP/CLICK"
 	let touchingNow = false
 	//END OF mobile device let statements
-	  
 	
 
 	let text = document.querySelector("a-text")
@@ -78,34 +77,6 @@
 		coins.push(new Coin(x=10, z=7))
 		coins.push(new Coin(x=1, z=16))
 
-
-
-		//touching mobile device screen continues: FORWARD
-		window.addEventListener("touchstart", function(event) {
-			if (message == "") {
-				touchingNow = true
-				event.preventDefault()
-			}
-		}, { passive: false })
-
-		//touching mobile device screen ends: BACKWARD
-		window.addEventListener("touchend", function(event) {
-			touchingNow = false
-			if (message == "") {
-				let angle = camera.getAttribute("rotation") 
-				let changeX = 0.25 * Math.sin(angle.y * Math.PI / 180)
-				let changeZ = 0.25 * Math.cos(angle.y * Math.PI / 180) 
-				cameraPos.x += 1.5*changeX; 
-				cameraPos.z += 1.5*changeZ;
-				event.preventDefault()
-			}
-			else {
-				message = ""
-			}
-		}, { passive: false })
-
-
-
 		//keyboard toggle between birdseye view and street view
 		document.addEventListener('keydown', function(event) {
 			//return (enter) key
@@ -127,8 +98,6 @@
 		for (let wall of walls) {
 			wall.blocksYou()
 		}
-		
-		
 		
 		//mobile device: MOVE FORWARD
 		if (touchingNow == true) {

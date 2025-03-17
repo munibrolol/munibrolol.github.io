@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Bokor&display=swap" rel="stylesheet">
+
+<head>
+  <title>Walter's Pastries</title>
+  <style>
+    body {
+      text-align: center;
+      background: url("https://media.istockphoto.com/id/880710798/vector/seamless-vector-bakery-pastry-pattern.jpg?s=612x612&w=0&k=20&c=e5TN-lIQoRhqrdIoJhUs_VfhzcmDxEY869s6s1SRYF8=");
+      background-size: cover;
+      background-position: center;
+      color: yellow;
+     font-family: "Rubik Mono One", monospace;
+    }
+    p {
+      background: grey;
+      font-size: 18px;
+      
+    }
+    input {
+      border: 0;
+      padding: 10px;
+      font-size: 18px;
+      background: #D3D3D3
+      
+    }
+    input[type="submit"] {
+      background: black;
+      color: gold;
+      font-family: "Pacifico", cursive;
+    }
+    img {
+      border-radius: 300px;
+      }
+  </style>
+</head>
+<body>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9HIxQ3ol8BJDTDNA0GtpKiIw9A71KQdliPQ&s">
+  <p>Hello! I'm Devon. I sell 24-Karrot gold-leaf  pastries. Write me an E-Mail for more info. </p>
+  <input id="Name" placeholder="Your Name">
+  <input id="Email" placeholder="Your Email">
+  <input id="submit" type="submit">
+  
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+	import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAe6I6-0BXsdPdZH9Tupc6JLpmg9b0NwkE",
+      authDomain: "munioproject1te.firebaseapp.com",
+      projectId: "munioproject1te",
+      storageBucket: "munioproject1te.firebasestorage.app",
+      messagingSenderId: "409481927343",
+      appId: "1:409481927343:web:d96b8277fb68cdc25b125a"
+    };
+
+    // Initialize Firebase
+    // 
+    const app = initializeApp(firebaseConfig);
+	const db = getDatabase(app);
+
+	const Name = document.querySelector("#Name") 
+	const Email = document.querySelector("#Email")
+	document.querySelector('#submit').addEventListener('click', Submit)
+	
+	
+	function Submit() {
+	  const timestamp = buildTimestamp()
+	  
+	  set(ref(db, timestamp), {
+		  Name: Name.value,
+	      email: Email.value,
+	  });
+
+	  Name.value = ""
+	  Email.value = ""
+	}
+	
+	
+	function buildTimestamp() {
+	  const now = new Date();
+	  let timestamp = now.getFullYear().toString() + "/";
+	  //const month = now.toLocaleString('default', { month: 'long' });
+
+	  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+	  month = month.toString()
+	  month = addLeadingZero(month)
+	  timestamp += month + "/"; 
+
+	  let date = now.getDate().toString()
+	  date = addLeadingZero(date)
+	  timestamp += date + "/";
+
+	  let hours = now.getHours().toString()
+	  hours = addLeadingZero(hours)
+	  timestamp += hours + ":";
+
+	  let minutes = now.getMinutes().toString()
+	  minutes = addLeadingZero(minutes)
+	  timestamp += minutes + ":";
+
+	  let seconds = now.getSeconds().toString()
+	  seconds = addLeadingZero(seconds)
+	  timestamp += seconds;
+  
+	  return timestamp
+	}
+	
+	function addLeadingZero(units) {
+		if (units.length < 2) {
+			units = "0" + units
+		}
+		return units
+	}
+	
+	
+  </script>
+  
+  
+  
+  
+  
+</body>

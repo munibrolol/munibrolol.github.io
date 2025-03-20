@@ -44,6 +44,7 @@
   <p>Hello! I'm Devon. I sell 24-Karrot gold-leaf  pastries. Write me an E-Mail for more info. </p>
   <input id="Name" placeholder="Your Name">
   <input id="Email" placeholder="Your Email">
+  <input id="Pastry" placeholder="Your Pastry">
   <input id="submit" type="submit">
   
   <script type="module">
@@ -70,6 +71,7 @@
 
 	const Name = document.querySelector("#Name") 
 	const Email = document.querySelector("#Email")
+	const Pastry = document.querySelector("#Pastry")
 	document.querySelector('#submit').addEventListener('click', Submit)
 	
 	
@@ -79,10 +81,12 @@
 	  set(ref(db, timestamp), {
 		  Name: Name.value,
 	      email: Email.value,
+		  pastry: Pastry.value,
 	  });
 
 	  Name.value = ""
 	  Email.value = ""
+	  Pastry.value = ""
 	}
 	
 	

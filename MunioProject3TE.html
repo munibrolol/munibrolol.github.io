@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" type='text/css'>
+
+<style>
+body {
+  font-family: "Playfair Display", serif;
+  margin: 0 auto;
+  max-width: 600px;
+  background: grey;
+}
+div {
+  height: 400px;
+  background-size: cover;
+  position: relative;
+  margin: 50px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: "Jacquarda Bastarda 9", serif;
+  text-align: center;
+  font-size: 75px;
+  color: yellow;
+  margin: 60px 0 0 0;
+}
+h2 {
+  font-family: "Arvo", serif;
+  text-align: center;
+  color: lime;
+  margin: 0px 0 70px 0;
+}
+p {
+  color: rgba(0,255,0,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(255,0,255,1), rgba(0,255,255,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+
+input {
+	font-size: 22px;
+}
+
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNrmTxC9FXbd7bkF31JwDpbQ8Q0fqoF8OsWQ&s");
+}
+.second{
+  background-image: url("https://hips.hearstapps.com/hmg-prod/images/apple-cider-index-650b034b5aa4d.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*");
+}
+.dessert{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2FaTOeAFrv584e2LCLIR0q6mlnZkjV3n7vQ&s");
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>Anicent Drinks </h1>
+<h2>Drinks that we Will Bring to You!</h2>
+<div class="first">
+	<input class="quantities" type="number" min="0" style="width: 50px"> 
+  <p> Crisp Ice Water <span class="price">$8</span><br />
+  <small>Make fresh ice and freezefor 3.5 hours. Get water in liquid form. Add four ice cubes. Enjoy your fresh water. </small></p>
+</div>
+
+<div  class="second">
+	<input class="quantities" type="number" min="0" style="width: 50px"> 
+  <p>Apple Cider <span class="price">$10</span><br />
+  <small>Boil 4 apples, 1 orange, 3 cloves, and 2 sticks of cinnamon to a big pot and boil for 1 hour. Let simmer for 30 min to cool. str4ian cider out od the mixter. Niow you have fresh apple cider!</small></p>
+</div>
+  
+<div  class="dessert">
+	<input class="quantities" type="number" min="0" style="width: 50px"> 
+  <p> Ice Cream Float<span class="price">$10</span><br />
+  <small>add to cups of vannilla ice-cream and 360floz of Coca-Cola to a cup and serve with straw. Keep refrigerated for 1 hour before serving. Enjoy!</small></p>
+</div>
+ <br><br>
+  <input id="Name" placeholder="Your Name">
+  <input id="Email" placeholder="Your Email">
+  <input id="submit" type="submit">
+ <br><br>
+ 
+ 
+ 
+ 
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCJ6NkNGkZ_EboTz9cJwzVPD0BJaTCLUn8",
+    authDomain: "munioproject3te.firebaseapp.com",
+    projectId: "munioproject3te",
+    storageBucket: "munioproject3te.firebasestorage.app",
+    messagingSenderId: "639530194201",
+    appId: "1:639530194201:web:7195c3898c788e2bd3a188"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+const Name = document.querySelector("#Name") 
+const Email = document.querySelector("#Email")
+
+const quantities = document.querySelectorAll(".quantities") 
+  const prices = document.querySelectorAll(".price") 
+  const itemsList = ["water", "cider", "float"]
+
+document.querySelector('#submit').addEventListener('click', Submit)
+
+
+function Submit() {
+  const timestamp = buildTimestamp()
+	let total = 0 
+	let cart = { }
+	for  (let i=0; i<quantities.length; i=i+1) {
+	  if (quantities[i].value != "0" && quantities[i].value != "") 	  {	
+		let price = prices[i].innerHTML.replace('$', '')
+		total = total + quantities[i].value * price 
+	  
+
+	    cart[itemsList[i]] = parseInt(quantities[i].value) 
+	  }
+	  quantities[i].value = ""
+	}
+
+
+	
+  
+  set(ref(db, timestamp), {
+	  Name: Name.value,
+      email: Email.value,
+	  cart: cart,
+      totalPrice: total,
+      paid: "not yet",
+	  
+  });
+
+  Name.value = ""
+  Email.value = ""
+}
+
+
+function buildTimestamp() {
+  const now = new Date();
+  let timestamp = now.getFullYear().toString() + "/";
+  //const month = now.toLocaleString('default', { month: 'long' });
+
+  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+  month = month.toString()
+  month = addLeadingZero(month)
+  timestamp += month + "/"; 
+
+  let date = now.getDate().toString()
+  date = addLeadingZero(date)
+  timestamp += date + "/";
+
+  let hours = now.getHours().toString()
+  hours = addLeadingZero(hours)
+  timestamp += hours + ":";
+
+  let minutes = now.getMinutes().toString()
+  minutes = addLeadingZero(minutes)
+  timestamp += minutes + ":";
+
+  let seconds = now.getSeconds().toString()
+  seconds = addLeadingZero(seconds)
+  timestamp += seconds;
+
+  return timestamp
+}
+
+function addLeadingZero(units) {
+	if (units.length < 2) {
+		units = "0" + units
+	}
+	return units
+}
+
+</script>
+
+
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>

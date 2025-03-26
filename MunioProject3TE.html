@@ -82,6 +82,12 @@ small {
 .price {
   float: right;
 }
+
+.fourth { 
+    background-image: url("https://m.media-amazon.com/images/I/61IZejGyg6L.jpg");
+  }
+	
+}
 @media (max-width: 500px) {
   h1 {
     font-size: 50px;
@@ -125,8 +131,15 @@ small {
   
 <div  class="dessert">
 	<input class="quantities" type="number" min="0" style="width: 50px"> 
-  <p> Ice Cream Float<span class="price">$7</span><br />
+  <p> Ice Cream Float<span class="price">$10</span><br />
   <small>add to cups of vannilla ice-cream and 360floz of Coca-Cola to a cup and serve with straw. Keep refrigerated for 1 hour before serving. Enjoy!</small></p>
+</div>
+
+
+<div  class="fourth">
+	<input class="quantities" type="number" min="0" style="width: 50px"> 
+  <p> Mexican Coke<span class="price">$6</span><br />
+  <small>This is made with our secret recipe so you won'f find out how it's made. ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </small></p>
 </div>
  <br><br>
   <input id="Name" placeholder="Your Name">
@@ -163,7 +176,7 @@ const Email = document.querySelector("#Email")
 
 const quantities = document.querySelectorAll(".quantities") 
   const prices = document.querySelectorAll(".price") 
-  const itemsList = ["water", "cider", "float"]
+  const itemsList = ["water", "cider", "float, coke"]
 
 document.querySelector('#submit').addEventListener('click', Submit)
 
